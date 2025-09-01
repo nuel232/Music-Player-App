@@ -87,7 +87,7 @@ class SongPage extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: 30),
+                  SizedBox(height: 25),
 
                   //song duration progress
                   Column(
@@ -131,7 +131,7 @@ class SongPage extends StatelessWidget {
                     ],
                   ),
 
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 25),
 
                   // playback controls
                   Row(
