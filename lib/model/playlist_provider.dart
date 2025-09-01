@@ -8,15 +8,21 @@ class PlaylistProvider extends ChangeNotifier {
     Song(
       songName: 'With you',
       artistName: "Davido",
-      albumArtistImagePath: 'assets/image/with-you.jpg',
-      audioPath: 'assets/audio/d.mp3',
+      albumArtistImagePath: 'lib/assets/images/with-you.jpg',
+      audioPath: 'lib/assets/audio/d.mp3',
     ),
   ];
 
   //current song playing index
-  int? _currentIndex;
+  int? _currentSongIndex;
 
   //G E T T E R S
   List<Song> get playlist => _playlist;
-  int? get currentIndex => _currentIndex;
+  int? get currentSongIndex => _currentSongIndex;
+
+  //S E T T E R S
+  set currentSongIndex(int? newIndex) {
+    _currentSongIndex = newIndex;
+    notifyListeners();
+  }
 }
