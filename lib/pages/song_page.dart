@@ -125,8 +125,12 @@ class SongPage extends StatelessWidget {
                           value: value.currentDuration.inSeconds.toDouble(),
                           activeColor: Colors.green,
                           inactiveColor: Colors.grey.shade400,
-                          onChanged: (value) {
+                          onChanged: (double double) {
                             //when the user is sliding
+                          },
+                          onChangeEnd: (double double) {
+                            //when the user has finished, go to that position in the song
+                            value.seek(Duration(seconds: double.toInt()));
                           },
                         ),
                       ),
@@ -141,7 +145,7 @@ class SongPage extends StatelessWidget {
                       //skip previous
                       Expanded(
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: value.playPreviousSong,
                           child: NeuBox(child: Icon(Icons.skip_previous)),
                         ),
                       ),
@@ -153,8 +157,12 @@ class SongPage extends StatelessWidget {
                         //this means it should be double in size
                         flex: 2,
                         child: GestureDetector(
-                          onTap: () {},
-                          child: NeuBox(child: Icon(Icons.play_arrow)),
+                          onTap: value.pauseOrResume,
+                          child: NeuBox(
+                            child: Icon(
+                              value.isPlaying ? Icons.pause : Icons.play_arrow,
+                            ),
+                          ),
                         ),
                       ),
 
@@ -163,7 +171,7 @@ class SongPage extends StatelessWidget {
                       //skip forward
                       Expanded(
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: value.playNextSong,
                           child: NeuBox(child: Icon(Icons.skip_next)),
                         ),
                       ),

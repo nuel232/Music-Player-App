@@ -20,7 +20,7 @@ class PlaylistProvider extends ChangeNotifier {
           'lib/assets/audio/Olamide-99-Ft-Seyi-Vibez-Asake-Young-Jonn-Daecolm-(JustNaija.com).mp3',
     ),
     Song(
-      songName: 'With you',
+      songName: 'Be There Still',
       artistName: "Davido",
       albumArtistImagePath: 'lib/assets/images/with-you.jpg',
       audioPath: 'lib/assets/audio/Be-There-Still.mp3',
