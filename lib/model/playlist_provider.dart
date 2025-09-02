@@ -9,20 +9,20 @@ class PlaylistProvider extends ChangeNotifier {
     Song(
       songName: 'With you',
       artistName: "Davido",
-      albumArtistImagePath: 'lib/assets/images/with-you.jpg',
+      albumArtistImagePath: 'assets/images/with-you.jpg',
       audioPath: 'assets/audio/d.mp3',
     ),
     Song(
       songName: 'Be There Still',
-      artistName: "Davido",
-      albumArtistImagePath: 'lib/assets/images/Olamide-Album.jpeg',
+      artistName: "Olamide", // Fixed artist name
+      albumArtistImagePath: 'assets/images/Olamide-Album.jpeg',
       audioPath:
           'assets/audio/Olamide-99-Ft-Seyi-Vibez-Asake-Young-Jonn-Daecolm-(JustNaija.com).mp3',
     ),
     Song(
       songName: 'Be There Still',
       artistName: "Davido",
-      albumArtistImagePath: 'lib/assets/images/with-you.jpg',
+      albumArtistImagePath: 'assets/images/with-you.jpg',
       audioPath: 'assets/audio/Be-There-Still.mp3',
     ),
   ];
@@ -74,7 +74,6 @@ class PlaylistProvider extends ChangeNotifier {
     } else {
       resume();
     }
-    notifyListeners();
   }
 
   //seek to a specific position in the current song
@@ -86,10 +85,10 @@ class PlaylistProvider extends ChangeNotifier {
   void playNextSong() {
     if (_currentSongIndex != null) {
       if (_currentSongIndex! < _playlist.length - 1) {
-        //go to the next song id its not the last song
-        _currentSongIndex = _currentSongIndex! + 1;
+        //go to the next song if its not the last song
+        currentSongIndex = _currentSongIndex! + 1;
       } else {
-        //if it's the last song, loog back to the first song
+        //if it's the last song, loop back to the first song
         currentSongIndex = 0;
       }
     }
@@ -99,8 +98,7 @@ class PlaylistProvider extends ChangeNotifier {
   void playPreviousSong() {
     //if more than 2 seconds have passed, restart the current song
     if (_currentDuration.inSeconds > 2) {
-      _currentSongIndex = _currentSongIndex! - 1;
-      play();
+      seek(Duration.zero);
     } else {
       if (_currentSongIndex! > 0) {
         currentSongIndex = _currentSongIndex! - 1;
@@ -121,16 +119,21 @@ class PlaylistProvider extends ChangeNotifier {
     //listen for the current duration
     _audioPlayer.onPositionChanged.listen((newPosition) {
       _currentDuration = newPosition;
+      notifyListeners();
     });
 
     //listen for song completion
-
     _audioPlayer.onPlayerComplete.listen((event) {
       playNextSong();
     });
   }
 
   // dispose audio player
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
 
   /* 
   
