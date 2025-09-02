@@ -10,20 +10,20 @@ class PlaylistProvider extends ChangeNotifier {
       songName: 'With you',
       artistName: "Davido",
       albumArtistImagePath: 'assets/images/with-you.jpg',
-      audioPath: 'assets/audio/d.mp3',
+      audioPath: 'audio/d.mp3',
     ),
     Song(
       songName: 'Be There Still',
       artistName: "Olamide", // Fixed artist name
       albumArtistImagePath: 'assets/images/Olamide-Album.jpeg',
       audioPath:
-          'assets/audio/Olamide-99-Ft-Seyi-Vibez-Asake-Young-Jonn-Daecolm-(JustNaija.com).mp3',
+          'audio/Olamide-99-Ft-Seyi-Vibez-Asake-Young-Jonn-Daecolm-(JustNaija.com).mp3',
     ),
     Song(
       songName: 'Be There Still',
       artistName: "Davido",
       albumArtistImagePath: 'assets/images/with-you.jpg',
-      audioPath: 'assets/audio/Be-There-Still.mp3',
+      audioPath: 'audio/Be-There-Still.mp3',
     ),
   ];
 
