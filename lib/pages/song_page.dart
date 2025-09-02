@@ -121,11 +121,13 @@ class SongPage extends StatelessWidget {
                         ),
                         child: Slider(
                           min: 0,
-                          max: 100,
-                          value: 0,
+                          max: value.totalDuration.inSeconds.toDouble(),
+                          value: value.currentDuration.inSeconds.toDouble(),
                           activeColor: Colors.green,
                           inactiveColor: Colors.grey.shade400,
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            //when the user is sliding
+                          },
                         ),
                       ),
                     ],
