@@ -6,6 +6,17 @@ import 'package:provider/provider.dart';
 class SongPage extends StatelessWidget {
   const SongPage({super.key});
 
+  //convert duration to min sec
+  String formatTime(Duration duration) {
+    String twoDigitSecond = duration.inSeconds
+        .remainder(60)
+        .toString()
+        .padLeft(2, '0');
+    String formattedTime = "${duration.inMinutes}:$twoDigitSecond";
+
+    return formattedTime;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<PlaylistProvider>(
@@ -98,7 +109,7 @@ class SongPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             //start and edit time
-                            Text('0:00'),
+                            Text(formatTime(value.currentDuration)),
 
                             //shuffle icon
                             Icon(Icons.shuffle),
@@ -107,7 +118,7 @@ class SongPage extends StatelessWidget {
                             Icon(Icons.repeat),
 
                             //end time
-                            Text('3:30'),
+                            Text(formatTime(value.totalDuration)),
                           ],
                         ),
                       ),
